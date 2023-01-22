@@ -2,21 +2,12 @@ import React from 'react';
 import { Ptest, Decor, Kitchen, Seating, LivingAreas  } from '../components';
 import { client } from '../lib/client';
 import Link from 'next/link';
-import { motion, useViewportScroll } from "framer-motion";
-import { useEffect, useState } from 'react';
+import { motion } from "framer-motion";
 
 
 
 const catalog = ( {kitchens, decors, seatings, livingareas } ) => {
-  const [scrollY, setScrollY] = useState(0);
-
-useEffect(() => {
-  const handleScroll = () => {
-    setScrollY(window.scrollY);
-  };
-  window.addEventListener("scroll", handleScroll);
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
+ 
 
   return (
     <div>
