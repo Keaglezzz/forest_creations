@@ -1,7 +1,6 @@
 import React from 'react';
 import { Ptest, Decor, Kitchen, Seating, LivingAreas  } from '../components';
 import { client } from '../lib/client';
-import Link from 'next/link';
 import { motion } from "framer-motion";
 
 
