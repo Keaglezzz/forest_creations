@@ -26,7 +26,7 @@ const Home = ({ products, bannerData }) => (
   </div>
 );
 
-export const getServerSideProps = async () => {
+export async function getServerSideProps() {
   const query = '*[_type == "product"]';
   const products = await client.fetch(query);
 

@@ -55,7 +55,7 @@ const catalog = ( {kitchens, decors, seatings, livingareas } ) => {
 }
 
 
-export const getServerSideProps = async () => {
+export async function getServerSideProps() {
   const query = '*[_type == "kitchen" ]';
   const kitchens = await client.fetch(query);
 
