@@ -7,7 +7,6 @@ export { default as FooterBanner } from './FooterBanner';
 export { default as Cart } from './Cart';
 export { default as Contact } from './Contact';
 export { default as Tech } from './Tech';
-export { default as Accordion } from './Accordion';
 export { default as Work } from './Work';
 export { default as Ptest } from './Ptest';
 export { default as Decor } from './Decor';

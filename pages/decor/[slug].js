@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar, AiOutlineCloudDownload } from 'react-icons/ai';
+import { AiOutlineMinus, AiOutlinePlus  } from 'react-icons/ai';
 import { client, urlFor } from '../../lib/client';
 import { Decor  } from '../../components';
 import { useStateContext } from '../../context/StateContext';

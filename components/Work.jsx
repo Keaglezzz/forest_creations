@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { AiFillEye, AiFillMail } from 'react-icons/ai';
 import { motion } from 'framer-motion';
 import { urlFor, client } from '../lib/client';
 
