@@ -24,23 +24,8 @@ const Navbar = (selectedVolume) => {
       });
   };
 
-  // Add this function to handle navigation to the custom tables page
-  const handleCustomTablesNavigation = () => {
-    // Use router.push to navigate to the custom tables page
-    router.push("/custom-tables");
-  };
-
   return (
-    <nav
-      className="nav"
-      style={{
-        paddingBottom: "70px",
-        display: "flex",
-        justifyContent: "space-between",
-        marginTop: "-20px",
-        marginBottom: "15px",
-      }}
-    >
+    <nav className={`nav ${toggle ? "mobile" : ""}`}>
       <div className="navbar-container">
         <div className="logo__img">
           <Link href="/">
@@ -48,22 +33,20 @@ const Navbar = (selectedVolume) => {
           </Link>
         </div>
         {user ? (
-          <>
-            <div className="app__navbar-sign-out-container">
-              <span className="app__navbar-greeting">
-                Hello, {user.displayName}
-              </span>
-              <button onClick={handleSignOut} className="app__navbar-sign-out">
-                Sign out
-              </button>
-            </div>
-          </>
+          <div className="app__navbar-sign-out-container">
+            <span className="app__navbar-greeting">
+              Hello, {user.displayName}
+            </span>
+            <button onClick={handleSignOut} className="app__navbar-sign-out">
+              Sign out
+            </button>
+          </div>
         ) : (
           <button onClick={signInWithGoogle} className="app__navbar-sign-in">
             Sign in
           </button>
         )}
-        <p className="app__navbar-links">
+        <div className={`app__navbar-links ${toggle ? "mobile" : ""}`}>
           <Link href="/services" className="app__navbar-link">
             Shop
           </Link>
@@ -77,7 +60,14 @@ const Navbar = (selectedVolume) => {
           <Link href="/profile" className="app__navbar-link">
             Profile
           </Link>
-        </p>
+        </div>
+
+        <div
+          className="app__navbar-menu-icon"
+          onClick={() => setToggle(!toggle)}
+        >
+          <HiMenuAlt4 />
+        </div>
 
         <button
           type="button"
@@ -90,29 +80,45 @@ const Navbar = (selectedVolume) => {
         {showCart && <Cart selectedVolume={selectedVolume} />}
       </div>
 
-      <div className="app__navbar-menu">
-        <HiMenuAlt4 onClick={() => setToggle(true)} />
-        {toggle && (
-          <motion.div
-            whileInView={{ x: [300, 0] }}
-            transition={{ duration: 0.85, ease: "easeOut" }}
-          >
-            <HiX onClick={() => setToggle(false)} className="close__icon" />
-            <p
-              className="logo"
-              style={{ display: "contents" }}
-              onClick={() => setToggle(false)}
-            >
-              <Link href="/">Home</Link>
-              <Link href="/services">Shop</Link>
-              <Link href="/stackAways">Stack-Away Doors</Link>
-              <Link href="/contact">Contact</Link>
-              <Link href="/about">What We Do</Link>
-              <Link href="/profile">Profile</Link>
-            </p>
-          </motion.div>
-        )}
+      {/* Mobile menu icon */}
+      <div className="app__navbar-menu-icon" onClick={() => setToggle(!toggle)}>
+        {toggle ? <HiX /> : <HiMenuAlt4 />}
       </div>
+
+      {/* Cart icon */}
+      <button
+        type="button"
+        className="cart-icon"
+        onClick={() => setShowCart(true)}
+      >
+        <AiOutlineShopping />
+        <span className="cart-item-qty">{totalQuantities}</span>
+      </button>
+
+      {showCart && <Cart />}
+
+      {/* Mobile menu */}
+      {toggle && (
+        <motion.div
+          whileInView={{ x: [300, 0] }}
+          transition={{ duration: 0.85, ease: "easeOut" }}
+          className="app__navbar-links mobile"
+        >
+          <HiX onClick={() => setToggle(false)} className="close__icon" />
+          <p
+            className="logo"
+            style={{ display: "contents" }}
+            onClick={() => setToggle(false)}
+          >
+            <Link href="/">Home</Link>
+            <Link href="/services">Shop</Link>
+            <Link href="/stackAways">Stack-Away Doors</Link>
+            <Link href="/contact">Contact</Link>
+            <Link href="/about">What We Do</Link>
+            <Link href="/profile">Profile</Link>
+          </p>
+        </motion.div>
+      )}
     </nav>
   );
 };

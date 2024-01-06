@@ -1,5 +1,11 @@
 import React from "react";
-import { Typography, Button } from "@material-ui/core";
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Button from '@mui/material/Button';
 
 const Step4 = ({ selectedOptions }) => {
   // You can display a summary of the selected options in Step 4

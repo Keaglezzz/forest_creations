@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import {
-  Typography,
-  Grid,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Button,
-} from "@material-ui/core";
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Button from '@mui/material/Button';
 import { client } from "../lib/client";
 
 const Step1 = ({ selectedTableType, updateSelectedTableType, onNext }) => {

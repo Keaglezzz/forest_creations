@@ -6,7 +6,8 @@ import {
   StepContent,
   Button,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
+
 import Step1 from "./Step1"; // Selection of size and table style
 import Step2 from "./Step2"; // Selection of wood species and stain
 import Step3 from "./Step3"; // Leg style and leg material

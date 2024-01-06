@@ -1,8 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, forwardRef } from "react";
 import emailjs from "emailjs-com";
 import Image from "next/image";
 
-const StackAwayForm = React.forwardRef((props, ref) => {
+const StackAwayForm = forwardRef((props, ref) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -174,5 +174,7 @@ const StackAwayForm = React.forwardRef((props, ref) => {
     </>
   );
 });
+
+StackAwayForm.displayName = 'StackAwayForm'; // Setting display name
 
 export default StackAwayForm;

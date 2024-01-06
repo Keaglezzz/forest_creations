@@ -1,9 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { Ptest, SideNav, Product } from "../components";
 import { client } from "../lib/client";
 import { motion } from "framer-motion";
 
-const services = ({ products }) => {
+const Services = ({ products }) => {
+  const subCategoryRefs = useRef({});
   const filteredProducts = products.filter(
     (product) =>
       product.parentCategory !== null &&
@@ -35,21 +36,38 @@ const services = ({ products }) => {
     return acc;
   }, {});
 
-  const subCategoryRefs = useRef({});
 
-  Object.values(groupedProducts).forEach(({ subcategories }) => {
-    Object.values(subcategories).forEach((subcategory) => {
-      subCategoryRefs.current[`${subcategory.slug}`] = useRef(null);
+
+  useEffect(() => {
+    // Populate refs here after groupedProducts is available
+    Object.values(groupedProducts).forEach(({ subcategories }) => {
+      Object.values(subcategories).forEach((subcategory) => {
+        subCategoryRefs.current[`${subcategory.slug}`] = React.createRef();
+      });
     });
-  });
+  }, [groupedProducts]);
 
-  const scrollToSubCategory = (parentSlug, subSlug) => {
-    const ref = subCategoryRefs.current[`${subSlug}`];
-    if (ref && ref.current) {
-      ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+  const populateRefs = (groupedProducts) => {
+    Object.values(groupedProducts).forEach(({ subcategories }) => {
+      Object.values(subcategories).forEach((subcategory) => {
+        subCategoryRefs.current[`${subcategory.slug}`] = React.createRef();
+      });
+    });
   };
 
+  // Call this function after you have your groupedProducts
+  useEffect(() => {
+    populateRefs(groupedProducts);
+  }, [groupedProducts]); // Make sure this only runs when groupedProducts changes
+
+
+  const scrollToSubCategory = (parentSlug, subSlug) => {
+    const ref = subCategoryRefs.current[subSlug];
+    if (ref) {
+      ref.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+  
   return (
     <div>
       <SideNav
@@ -64,11 +82,11 @@ const services = ({ products }) => {
             <span className="head__span">{name}</span>
           </h2>
           {Object.values(subcategories).map(({ name, slug, products }) => (
-            <div
-              ref={subCategoryRefs.current[`${slug}`]}
-              key={slug}
-              id={`${slug}-${name.toLowerCase().replace(/\s/g, "-")}`}
-            >
+  <div
+    ref={(el) => subCategoryRefs.current[slug] = el}
+    key={slug}
+    id={`${slug}-${name.toLowerCase().replace(/\s/g, "-")}`}
+  >
               <h3 className="sub-head-text" style={{ paddingTop: "30px" }}>
                 <span className="head__span">{name}</span>
               </h3>
@@ -130,4 +148,4 @@ export const getServerSideProps = async () => {
   };
 };
 
-export default services;
+export default Services;

@@ -553,9 +553,10 @@ a {
   z-index: 20;
   justify-content: center;
   align-items: center;
-  padding: 0.6rem 2rem;
+  padding: 0.6rem 1rem;
   background: linear-gradient(90deg, #0f9b0f, #000000);
   width: 100%;
+  height: 80px;
 }
 .blur-bg {
   position: fixed;
@@ -610,6 +611,7 @@ a {
   object-fit: contain;
   cursor: pointer;
   padding: 5px;
+  padding-top: 0px;
   margin-right: 50px;
 }
 .app__navbar-logo {
@@ -953,6 +955,7 @@ span.text-red {
   border-radius: 10px;
   background-color: #fff;
   top: -25px;
+  font-size: 1rem;
 }
 .head-text {
   font-size: 2.75rem;
@@ -1637,7 +1640,7 @@ textarea {
   top: 2.5%;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 32px;
+  font-size: 28px;
   font-weight: bold;
   background: linear-gradient(90deg, #0f9b0f, #012c11, #0f9b0f, #b8e7ca);
   background-size: 200% 200%;
@@ -1991,7 +1994,7 @@ textarea {
 }
 .quantity-desc .minus {
   border-right: 1px solid #0f9b0f;
-  color: #b8e7ca;
+  color: #ee2b24;
 }
 .quantity-desc .num {
   border-right: 1px solid #0f9b0f;
@@ -2185,12 +2188,42 @@ textarea {
   }
 }
 
+/* Existing media query styles */
 @media screen and (max-width: 800px) {
   .app__login-mobile-hidden {
     display: none;
   }
-  .toggle-button {
-    top: 75px;
+
+  .app__navbar-links {
+    display: none;
+  }
+
+  .app__navbar-menu {
+    display: block; /* Display the menu icon by default */
+  }
+
+  .app__navbar-links.mobile {
+    display: none; /* Hide the links initially for small screens */
+    flex-direction: column; /* Stack the links vertically */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff; /* Background color for the mobile menu */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Optional box shadow for a subtle effect */
+    z-index: 1000; /* Ensure the mobile menu is above other elements */
+  }
+
+  .app__navbar-links.mobile a {
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s ease; /* Add a transition effect for smoother appearance */
+  }
+
+  .app__navbar-links.mobile a:hover {
+    background-color: #f0f0f0; /* Change background color on hover */
   }
   .app__navbar-sign-out-container {
     display: flex;
@@ -2204,6 +2237,9 @@ textarea {
   }
   .app__navbar-sign-out {
     display: contents;
+  }
+  .tcg-image {
+    height: 300px;
   }
   .footer-banner-image {
     display: none;
@@ -2370,13 +2406,83 @@ textarea {
   }
   @media screen and (max-width: 619px) {
     .app__work-portfolio {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* 2 columns with equal width */
+      gap: 8px; /* Adjust the gap as needed */
       justify-content: center;
-      display: flex;
-      flex-direction: column;
       align-items: center;
+    }
+    .app__work-item {
+      width: 200px;
+    }
+    .app__work-tag {
+      font-size: 0.6rem;
+    }
+    .accordion__flex {
+      font-size: 0.8rem;
     }
   }
   @media screen and (max-width: 600px) {
+    .logo__img {
+      left: -10px;
+    }
+    .app__navbar-greeting {
+      font-size: 0.75rem;
+    }
+    .navbar-container {
+      height: 75px;
+      padding-top: 2px;
+      padding-left: 4px;
+    }
+    .works-heading h2 {
+      font-size: 2rem;
+    }
+    .works-heading p {
+      font-size: 1rem;
+    }
+    .tc-container {
+      padding-bottom: 1px;
+    }
+    .tc-caption {
+      font-size: 1.2rem;
+      top: 0.1%;
+    }
+    .tc-image {
+      height: 80%;
+      width: 100%;
+    }
+    .tc-link {
+      margin-bottom: 0.5px;
+    }
+    .tcg-container {
+      padding: 20px;
+    }
+    .tcg-image {
+      height: 250px;
+    }
+    .tcg-caption {
+      font-size: 1rem;
+    }
+    .products-heading h2 {
+      font-size: 2.4rem;
+    }
+    .products-heading p {
+      font-size: 1rem;
+    }
+    .head-text {
+      font-size: 2.2rem;
+      margin-top: 2.5px;
+    }
+    .sub-head-text {
+      padding-top: 20px;
+    }
+    .head-text {
+      font-size: 2rem;
+    }
+    .app__footer-cards {
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
     .desc {
       font-size: medium;
       width: 80%;
@@ -2388,6 +2494,70 @@ textarea {
     }
     .banner-desc .right p {
       width: 50%;
+    }
+    .toggle-button {
+      font-size: 20px;
+      left: -90px;
+    }
+    .app__stack-portfolio {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* 2 columns with equal width */
+    }
+    .p-text {
+      font-size: 0.8rem;
+    }
+    .app__stack-tag {
+      left: -120px;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+    .head-text-tree {
+      font-size: 1.2rem;
+      padding-top: 5px;
+      padding-bottom: 15px;
+    }
+    .text-lg {
+      font-size: 0.6rem;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    .works-heading h2 {
+      font-size: 1.6rem;
+    }
+    .works-heading p {
+      font-size: 0.8rem;
+    }
+    .tc-container {
+      grid-gap: 10px;
+    }
+    .tc-caption {
+      font-size: 1rem;
+    }
+    .tc-image {
+      height: 100%;
+    }
+    .tcg-image {
+      height: 200px;
+    }
+    .products-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* 2 columns with equal width */
+      padding: 2rem;
+    }
+    .product-image {
+      width: 185px;
+      height: 185px;
+    }
+    .product-card {
+      width: 185px;
+      height: 220px;
+    }
+    .product-name {
+      font-size: 0.8rem;
+    }
+    .products-heading {
+      margin-top: 0px;
+      margin-bottom: 1rem;
     }
   }
   @media screen and (max-width: 390px) {
@@ -2405,6 +2575,80 @@ textarea {
     }
     .product-detail-container .product-detail-image {
       margin-right: 20px;
+    }
+    .works-heading h2 {
+      font-size: 1.4rem;
+    }
+    .tc-caption {
+      font-size: 0.8rem;
+    }
+    .products-heading h2 {
+      font-size: 1.5rem;
+    }
+    .products-heading p {
+      font-size: 0.8rem;
+    }
+    .product-image {
+      width: 150px;
+      height: 150px;
+    }
+    .product-card {
+      width: 150px;
+      height: 190px;
+    }
+    .product-name {
+      font-size: 0.8rem;
+    }
+    .toggle-button {
+      font-size: 1rem;
+      left: -80px;
+    }
+    .product-name {
+      font-size: 0.65rem;
+    }
+    .footer-container p {
+      font-weight: 600;
+    }
+    .head-text {
+      font-size: 1.4rem;
+    }
+    .stackaway-head {
+      font-size: 0.6rem;
+      margin-bottom: 0.2rem;
+    }
+    .p-text {
+      font-size: 0.65rem;
+    }
+    .stack-text {
+      font-size: 0.5rem;
+    }
+    .app__stack-tag {
+      left: -80px;
+    }
+    .app__stack-item {
+      margin: 0.3rem;
+    }
+    .app__footer-form input {
+      font-size: 0.6rem;
+      padding: 0.4rem;
+    }
+    .input.p-text {
+      font-size: 0.6rem;
+    }
+    .app__work-item {
+      width: 150px;
+      margin: 1rem;
+    }
+    .accordion {
+      font-size: 0.8rem;
+    }
+    .accordion__answer {
+      font-size: 0.8rem;
+    }
+    .product-detail-container .product-detail-image {
+      width: 250px;
+      height: 250px;
+      margin-top: 5px;
     }
   }
 }

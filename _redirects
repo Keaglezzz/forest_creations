@@ -1,0 +1,13 @@
+# Redirects for main pages
+/about      /about.html
+/contact    /contact.html
+/           /index.html
+/profile    /profile.html
+/services   /services.html
+/stackaway  /stackaway.html
+
+# Redirects for slug pages in folders
+/chemical/*   /chemical/:splat
+/freeze/*     /freeze/:splat
+/lubrication/* /lubrication/:splat
+/product/*    /product/:splat
