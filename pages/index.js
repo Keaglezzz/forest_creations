@@ -205,7 +205,7 @@ const productQuery = `
 `;
 
 export const getServerSideProps = async () => {
-  const query = `*[_type == "product"]{
+  const query = `*[_type == "product" && parentCategory.name != "Table Creations"]{
     "id": _id,
     "name": name,
     "slug": slug.current,
@@ -229,7 +229,10 @@ export const getServerSideProps = async () => {
 
   // Group by parent category
   const groupedProducts = products.reduce((acc, product) => {
-    if (product.parentCategory) {
+    if (
+      product.parentCategory &&
+      product.parentCategory.name !== "Table Creations"
+    ) {
       (acc[product.parentCategory.name] =
         acc[product.parentCategory.name] || []).push(product);
     }

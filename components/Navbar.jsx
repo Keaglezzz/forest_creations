@@ -102,14 +102,15 @@ const Navbar = (selectedVolume) => {
         <motion.div
           whileInView={{ x: [300, 0] }}
           transition={{ duration: 0.85, ease: "easeOut" }}
-          className="app__navbar-links mobile"
+          className="mobile"
         >
-          <HiX onClick={() => setToggle(false)} className="close__icon" />
-          <p
-            className="logo"
-            style={{ display: "contents" }}
-            onClick={() => setToggle(false)}
-          >
+           {/* Corrected the onClick handler here */}
+    <HiX onClick={() => setToggle(false)} className="close__icon" />
+    <p
+      className="logo"
+      style={{ display: "contents" }}
+      onClick={() => setToggle(false)}
+    >
             <Link href="/">Home</Link>
             <Link href="/services">Shop</Link>
             <Link href="/stackAways">Stack-Away Doors</Link>

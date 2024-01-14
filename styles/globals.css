@@ -650,38 +650,38 @@ a {
   margin-top: 25px;
   margin-left: 75%;
 }
-.app__navbar-menu svg {
-  width: 70%;
-  height: 70%;
-  color: #ff5400;
+.app__navbar-menu svg{
+      width: 70%;
+      height: 70%;
+      color: #ff5400;
 }
-.app__navbar-menu div {
+.app__navbar-menu div{
   position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 100 !important;
-  padding: 1rem;
-  width: 82%;
-  justify-content: flex-end;
-  align-items: flex-end;
-  flex-direction: column;
-  background-size: cover;
-  background-repeat: repeat;
-  /* top box shadow */
-  box-shadow: 0px 0px 20px rgba(168, 168, 168, 0.5);
-  background-image: url("../assets/logo.png");
-  background-size: 60%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: rgb(246, 246, 246);
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 100 !important;
+      padding: 1rem;
+      width: 82%;
+      justify-content: flex-end;
+      align-items: flex-end;
+      flex-direction: column;
+      background-size: cover;
+      background-repeat: repeat;
+      /* top box shadow */
+      box-shadow: 0px 0px 20px rgba(168, 168, 168, 0.5);
+      background-image: url('../assets/logo.png');
+      background-size: 60%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-color: rgb(246, 246, 246);
 }
-.close__icon {
-  width: 35px !important;
-  height: 35px !important;
-  margin: 0.5rem 1rem !important;
+.close__icon{
+        width: 35px !important;
+        height: 35px !important;
+        margin: 0.5rem 1rem !important;
 }
-.app__navbar-menu a {
+.app__navbar-menu a{
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -692,7 +692,7 @@ a {
   transition: all 0.3s ease-in-out;
   padding: 0.5rem;
 }
-.app__navbar-menu a:hover {
+.app__navbar-menu a:hover{
   color: #1f4da1;
 }
 .marquee-text {
@@ -1409,6 +1409,7 @@ textarea {
   -webkit-text-fill-color: transparent;
   color: transparent;
   animation: gradient-animation 4s linear infinite;
+  margin-top: 1rem;
 }
 .works-heading p {
   font-size: 16px;
@@ -1632,7 +1633,8 @@ textarea {
   transition: opacity 0.2s;
 }
 .tc-link:hover {
-  box-shadow: 0 0 25px #0f9b0f;
+  box-shadow: 0px -15px 25px #0f9b0f;
+  margin-top: 10px;
 }
 
 .tc-caption {
@@ -1665,6 +1667,7 @@ textarea {
 .table-creations {
   padding: 1rem;
   color: #cfcfcf;
+  margin-top: 1rem;
 }
 
 .cart-wrapper {
@@ -2078,6 +2081,10 @@ textarea {
   margin-top: 10px;
 }
 
+.app__navbar-menu-icon {
+  display: none;
+}
+
 @media screen and (max-width: 1050px) {
   .tc-image {
     max-width: 100%;
@@ -2198,12 +2205,15 @@ textarea {
     display: none;
   }
 
-  .app__navbar-menu {
+  .app__navbar-menu-icon {
     display: block; /* Display the menu icon by default */
+    margin-right: 1rem;
+    color: #fff;
+    cursor: pointer;
   }
 
-  .app__navbar-links.mobile {
-    display: none; /* Hide the links initially for small screens */
+  .mobile {
+    display: flex;
     flex-direction: column; /* Stack the links vertically */
     position: absolute;
     top: 0;
@@ -2214,7 +2224,7 @@ textarea {
     z-index: 1000; /* Ensure the mobile menu is above other elements */
   }
 
-  .app__navbar-links.mobile a {
+  .mobile a {
     padding: 15px;
     text-align: center;
     text-decoration: none;
@@ -2222,7 +2232,7 @@ textarea {
     transition: background-color 0.3s ease; /* Add a transition effect for smoother appearance */
   }
 
-  .app__navbar-links.mobile a:hover {
+  .mobile a:hover {
     background-color: #f0f0f0; /* Change background color on hover */
   }
   .app__navbar-sign-out-container {
@@ -2649,6 +2659,24 @@ textarea {
       width: 250px;
       height: 250px;
       margin-top: 5px;
+    }
+  }
+  @media screen and (min-width: 320px) and (max-width: 568px),
+    (min-device-width: 320px) and (max-device-width: 568px) and (orientation: landscape) {
+    .tc-image {
+      height: auto;
+    }
+    .tc-caption {
+      font-size: 0.8rem;
+    }
+  }
+  @media screen and (min-width: 320px) and (max-width: 480px),
+    (min-device-width: 320px) and (max-device-width: 480px) and (orientation: landscape) {
+    .tc-image {
+      height: auto;
+    }
+    .tc-caption {
+      font-size: 0.8rem;
     }
   }
 }
