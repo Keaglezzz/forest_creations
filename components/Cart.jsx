@@ -85,16 +85,16 @@ const Cart = (props) => {
     closeModal();
     setShowCart(false);
     
-
+    
     const yoco = new window.YocoSDK({
-      publicKey: 'pk_test_d5670e23vnkJO8Na29d4',
+      publicKey: process.env.NEXT_PUBLIC_YOCO_PUBLIC_KEY,
     });
     
     yoco.showPopup({
       amountInCents: totalPrice * 100,
       currency: 'ZAR',
       name: 'Synkhem',
-      description: generateDescription(),
+      // description: generateDescription(),
       callback: async function (result) {
         if (result.error) {
           const errorMessage = result.error.message;
@@ -133,35 +133,37 @@ const Cart = (props) => {
               sendConfirmationEmail(email, items, JSON.stringify(payload.shippingInfo));
               //To Synkhem
               sendConfirmationEmail(email, items, JSON.stringify(payload.shippingInfo));
-                // Create a new order in Sanity
-                const order = {
-                  _type: 'orders',
-                  name,
-                  email,
-                  orderNumber: generateOrderNumber(), // add this line
-                  shippingInfo: {
-                    company,
-                    address,
-                    city,
-                    zip,
-                    contactNumber,
-                  },
-                  items: cartItems.map(item => ({
-                    _type: 'orderItem',
-                    _key: `item-${index}`,
-                    name: item.name,
-                    quantity: item.quantity,
-                    volume: item.selectedVolume,
-                  })),
-                }
-                
-                client.create(order)
-                  .then(res => {
-                    console.log(`Order was created, document ID is ${res._id}, order number is ${order.orderNumber}`)
-                  })
-                  .catch(err => {
-                    console.log('Error creating order:', err.message)
-                  })
+               // Create a new order in Sanity
+const order = {
+  _type: 'orders',
+  name,
+  email,
+  orderNumber: generateOrderNumber(),
+  shippingInfo: {
+    company,
+    address,
+    city,
+    zip,
+    contactNumber,
+  },
+  items: cartItems.map((item, index) => ({  // Make sure to add 'index' here
+    _type: 'orderItem',
+    _key: `item-${index}`,  // Now 'index' will be defined
+    name: item.name,
+    quantity: item.quantity,
+    customDetails: item.selectedOptions
+    // other properties as needed
+  })),
+}
+
+client.create(order)
+  .then(res => {
+    console.log(`Order was created, document ID is ${res._id}, order number is ${order.orderNumber}`)
+  })
+  .catch(err => {
+    console.log('Error creating order:', err.message)
+  })
+
                 }                
 
           } catch (error) {
@@ -186,24 +188,24 @@ const Cart = (props) => {
     }
   };
 
-  const generateDescription = () => {
-    return cartItems
-      .map(
-        (item) =>
-          `${item.name} - ${
-            item.volumes.find(
-              (volume) => volume.price === item.selectedVolumePrice
-            )?.size
-          } x ${item.quantity}`
-      )
-      .join(', ');
-  };
+  // const generateDescription = () => {
+  //   return cartItems
+  //     .map(
+  //       (item) =>
+  //         `${item.name} - ${
+  //           item.find(
+  //             (volume) => volume.price === item.selectedVolumePrice
+  //           )?.size
+  //         } x ${item.quantity}`
+  //     )
+  //     .join(', ');
+  // };
   
 
   useEffect(() => {
     if (typeof window !== 'undefined' && window.YocoSDK) {
       const yoco = new window.YocoSDK({
-        publicKey: 'pk_test_d5670e23vnkJO8Na29d4',
+        publicKey: process.env.NEXT_PUBLIC_YOCO_PUBLIC_KEY,
       });
   
       const handleYocoPayment = async () => {
@@ -325,11 +327,12 @@ const Cart = (props) => {
         )}
                 <div className="flex bottom">
                   <div>
+                  
                     <p className="quantity-desc">
                       <span className="minus" onClick={() => toggleCartItemQuanitity(item._id, 'dec') }>
                         <AiOutlineMinus />
                       </span>
-                      <span className="num" onClick="">{item.quantity}</span>
+                      <span className="num">{item.quantity}</span>
                       <span className="plus" onClick={() => toggleCartItemQuanitity(item._id, 'inc') }><AiOutlinePlus /></span>
                     </p>
                   </div>

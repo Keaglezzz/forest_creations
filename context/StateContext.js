@@ -134,7 +134,9 @@ export const StateContext = ({ children }) => {
     toast.success(`${quantity} ${product.name} added to the cart.`);
   };
   
-  
+    
+  const formatPrice = (value) => new Intl.NumberFormat('en-ZA', { style: 'currency', currency: 'ZAR' }).format(value);
+
 
   const toggleCartItemQuanitity = (id, value) => {
     const updatedCartItems = cartItems.map((item) => {
@@ -213,6 +215,7 @@ export const StateContext = ({ children }) => {
         setTotalQuantities,
         clearCart, 
         user,
+        formatPrice,
       }}
     >
       {children}

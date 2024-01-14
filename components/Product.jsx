@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { urlFor } from "../lib/client";
 
-const Product = ({ product: { image, name, slug, price, volume } }) => {
+const Product = ({ product: { image, name, slug, price, volume }, formatPrice }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (

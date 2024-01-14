@@ -18,7 +18,7 @@ const ProductDetails = ({ product, products }) => {
   const [selectedVolumePrice, setSelectedVolumePrice] = useState(0);
 
   const handleBuyNow = () => {
-    onAdd(product, qty, selectedVolume.price, selectedVolume);
+    onAdd(product, qty, price, selectedVolume);
     setShowCart(true);
   };
 
@@ -28,7 +28,7 @@ const ProductDetails = ({ product, products }) => {
   // Update selectedVolume on product change
   useEffect(() => {
     if (selectedVolume) {
-      setSelectedVolumePrice(selectedVolume.price);
+      setSelectedVolumePrice(price);
     }
   }, [selectedVolume]);
 
@@ -49,6 +49,9 @@ const ProductDetails = ({ product, products }) => {
       setSelectedVolume(sortedVolumes[0]);
     }
   }, [product]);
+
+  
+console.log(price)
 
   return (
     <div>
@@ -99,7 +102,7 @@ const ProductDetails = ({ product, products }) => {
                 .join(" ")}
           </p>
           <p className="price">
-            R{selectedVolume && formatPrice(selectedVolume.price)}
+            R{price}
           </p>
           <div className="quantity">
             <h3>Quantity:</h3>
@@ -117,7 +120,7 @@ const ProductDetails = ({ product, products }) => {
             <button
               type="button"
               className="add-to-cart"
-              onClick={() => onAdd(product, qty, selectedVolume.price)}
+              onClick={() => onAdd(product, qty, price)}
             >
               Add to Cart
             </button>

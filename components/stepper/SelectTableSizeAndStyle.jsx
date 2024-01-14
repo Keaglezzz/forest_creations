@@ -416,7 +416,7 @@ useEffect(() => {
     const customTable = {
       _id: 'custom-table-' + new Date().getTime(),
       name: 'Custom Table',
-      price: totalPrice, // use the calculated price directly
+      price: calculateTotalPrice(),
       quantity: 1,
       image: [step1ImageUrl, step2ImageUrl, step3ImageUrl].filter(url => url), // Array of images
       selectedOptions: {
