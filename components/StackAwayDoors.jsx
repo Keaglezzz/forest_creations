@@ -23,7 +23,7 @@ const StackAwayDoors = () => {
 
   return (
     <>
-      <h2 className="head-text">
+      <h2 className="head-text" style={{ marginTop: "1.4rem" }}>
         Frameless/Stack Away Doors by{" "}
         <span className="head__span">Forest Creations!</span>
       </h2>

@@ -48,7 +48,7 @@ const Work = () => {
   console.log("Work object:", works);
   return (
     <>
-      <h2 className="head-text">
+      <h2 className="head-text" style={{ marginTop: "1.4rem" }}>
         Welcome to <span className="head__span">Forest Creations!</span>
       </h2>
 
@@ -58,57 +58,62 @@ const Work = () => {
         className="app__work-portfolio"
       >
         {filterWork.map((work, workIndex) => (
-  <div
-    className={`app__work-item app__flex ${
-      workIndex === expandedCard ? "expanded-card" : ""
-    }`}
-    key={workIndex}
-  >
-    <Slider {...settings}>
-      {work.imgUrl && work.imgUrl.length > 0 ? (
-        work.imgUrl.map((img, imgIndex) => (
-          <div key={imgIndex}>
-            <div className="app__work-img app__flex">
-              <img src={urlFor(img.asset)} alt={`work-${workIndex}-image-${imgIndex}`} />
-              {/* rest of your code */}
+          <div
+            className={`app__work-item app__flex ${
+              workIndex === expandedCard ? "expanded-card" : ""
+            }`}
+            key={workIndex}
+          >
+            <Slider {...settings}>
+              {work.imgUrl && work.imgUrl.length > 0 ? (
+                work.imgUrl.map((img, imgIndex) => (
+                  <div key={imgIndex}>
+                    <div className="app__work-img app__flex">
+                      <img
+                        src={urlFor(img.asset)}
+                        alt={`work-${workIndex}-image-${imgIndex}`}
+                      />
+                      {/* rest of your code */}
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p>No images available</p>
+              )}
+            </Slider>
+
+            <div className="app__work-content app__flex">
+              <h4 className="bold-text">{work.name}</h4>
+              <h6 className="bold-text" style={{ color: "#012c11" }}>
+                {work.title}
+              </h6>
+              {workIndex === expandedCard ? (
+                <p className="p-text" title={work.description}>
+                  {work.description}
+                </p>
+              ) : (
+                <p className="p-text truncated-text" title={work.description}>
+                  {work.description ? work.description.substring(0, 100) : ""}
+                </p>
+              )}
+              {work.description && work.description.length > 100 && (
+                <button
+                  className="expand-button"
+                  onClick={() =>
+                    setExpandedCard(
+                      workIndex === expandedCard ? null : workIndex
+                    )
+                  }
+                >
+                  {workIndex === expandedCard ? "Read Less" : "Read More"}
+                </button>
+              )}
+              <div className="app__work-tag app__flex">
+                <p className="p-text">{work.tags[0]}</p>
+              </div>
             </div>
           </div>
-        ))
-      ) : (
-        <p>No images available</p>
-      )}
-    </Slider>
-
-    <div className="app__work-content app__flex">
-      <h4 className="bold-text">{work.name}</h4>
-      <h6 className="bold-text" style={{ color: "#012c11" }}>
-        {work.title}
-      </h6>
-      {workIndex === expandedCard ? (
-        <p className="p-text" title={work.description}>
-          {work.description}
-        </p>
-      ) : (
-        <p className="p-text truncated-text" title={work.description}>
-          {work.description ? work.description.substring(0, 100) : ""}
-        </p>
-      )}
-      {work.description && work.description.length > 100 && (
-        <button
-          className="expand-button"
-          onClick={() =>
-            setExpandedCard(workIndex === expandedCard ? null : workIndex)
-          }
-        >
-          {workIndex === expandedCard ? "Read Less" : "Read More"}
-        </button>
-      )}
-      <div className="app__work-tag app__flex">
-        <p className="p-text">{work.tags[0]}</p>
-      </div>
-    </div>
-  </div>
-))}
+        ))}
       </motion.div>
     </>
   );

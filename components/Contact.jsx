@@ -44,7 +44,7 @@ const Contact = () => {
   return (
     <>
       <div className="contact">
-        <h2 className="head-text">
+        <h2 className="head-text" style={{ marginTop: "1.4rem" }}>
           Have an <span className="head__span">enquiry</span> for us?
         </h2>
         <div className="app__footer-cards">
